@@ -1,0 +1,7 @@
+{
+  "name": "NexusDiamond - MLBB Diamond Marketplace & Escrow Exchange",
+  "description": "Secure buy & sell platform for Mobile Legends: Bang Bang diamonds with real money payments, automated escrow protection, authorized distributor API automatic fulfillment, and real-time transaction tracking. Version 1.1.0.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
+

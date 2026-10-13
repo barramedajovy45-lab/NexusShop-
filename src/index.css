@@ -1,0 +1,105 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+/* =========================================================================
+   WCAG 2.1 AA+ Color Contrast & Accessibility Enhancements
+   Ensures muted slate text on dark #090d16 / #0f172a surfaces passes 4.5:1+
+   and micro-text (9px-11px) remains crisp and legible for visually impaired users.
+   ========================================================================= */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Elevate muted slate text colors to meet WCAG AA 4.5:1+ contrast on dark slate backgrounds */
+  .text-slate-500 {
+    color: #94a3b8 !important; /* Elevated from #64748b (3.1:1) to #94a3b8 (6.8:1 WCAG AA+) */
+  }
+
+  .text-slate-400 {
+    color: #cbd5e1 !important; /* Elevated from #94a3b8 to #cbd5e1 (10.8:1 WCAG AAA) */
+  }
+
+  /* Ensure placeholder text in dark inputs has readable contrast */
+  input::placeholder,
+  textarea::placeholder {
+    color: #94a3b8 !important;
+    opacity: 1;
+  }
+
+  /* Visible keyboard focus rings for screen-reader & keyboard navigation */
+  button:focus-visible,
+  a:focus-visible,
+  input:focus-visible,
+  select:focus-visible,
+  textarea:focus-visible {
+    outline: 2px solid #22d3ee;
+    outline-offset: 2px;
+  }
+
+  /* Enforce readable minimum font size & line-height on micro utility classes */
+  .text-\[8\.5px\],
+  .text-\[9px\],
+  .text-\[10px\] {
+    font-size: 0.6875rem !important; /* Minimum 11px for legibility */
+    line-height: 1.35 !important;
+    letter-spacing: 0.01em;
+  }
+}
+
+/* Custom subtle pulse animation for bulk discount badges */
+@keyframes pulse-subtle {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.92;
+    transform: scale(1.02);
+  }
+}
+
+.animate-pulse-subtle {
+  animation: pulse-subtle 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Smooth GPU-accelerated shimmer sweep for Skeleton Loaders */
+@keyframes skeleton-shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.skeleton-shimmer-bar {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(34, 211, 238, 0.04) 35%,
+    rgba(255, 255, 255, 0.07) 50%,
+    rgba(34, 211, 238, 0.04) 65%,
+    transparent 100%
+  );
+  animation: skeleton-shimmer 1.75s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skeleton-shimmer-bar {
+    animation: none;
+  }
+}
+
